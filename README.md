@@ -1,14 +1,14 @@
 # CiscoHackaton
 Getting started code for integration with Evoko Home room booking server
 
+See the bookAllRooms.js file for a working Nodejs example.
 
-# Evoko Home API documentation - DRAFT / WIP
+# Evoko Home API documentation
 
 - [Introduction](#introduction)
 - [Connecting to Evoko Home over DDP](#login)
 - [Register a new client group - `registerClientGroup2x`](#registerClientGroup2x)
 - [Register an integration user - `registerIntegrationUser`](#registerIntegrationUser)
-- [Subscribing to collections](#collections)
 - [Create a meeting - `createBooking`](#createBooking)
 - [Update a meeting - `updateEvent`](#updateEvent)
 - [Delete a meeting - `deleteEvent`](#deleteEvent)
@@ -21,7 +21,6 @@ Getting started code for integration with Evoko Home room booking server
 
 ## Introduction <a name="introduction"></a>
 
-**_Insert introduction_** !!!
 
 <!-- This API is the same API that is used by the Evoko Liso units, Evoko Get A Room Appconnector and Evoko Overview Screen server.
 
@@ -221,70 +220,6 @@ ddpclient.call('registerIntegrationUser',
   errorType: 'Meteor.Error' }
 ```
 
----
-
-## Subscribing to collections <a name="collections"></a>
-
-Evoko Home stores meetings, users, settings etc in what Meteor/MongoDB calls "collections". A collection can be considered as group or table and within a collection data can be stored sub-groups of JSON formatted "documents", each with its own unique ID.
-
-For example, in Evoko Home each user is stored in their own document (which contains user information as their name, email, PIN, RFID etc) and all users are collectivly grouped under a single collection called "users".
-
-To get a better understanding of the Evoko Home database structure you can use a 3rd party tool like [Robo 3T](https://robomongo.org/) which is a MongoDB client that allows you to view the different database collections via a desktop app.
-
-__*Insert text about how subscribing works*__ !!!
-
-### Collections
-
-| Name | Collection key | Parameters | Comment |
-|-|-|-|-|
-| `bookings` | `allBookings`| `roomId` or `ALL` ??? | Note that only meetings 7 days into the future are synced to this collection. |
-| `rooms` | `allRooms` | `roomId` or `ALL` ??? | Contains all rooms added in Evoko Home. |
-| `users` | `users` | ??? | Contains all users added in Evoko Home. |
-| `settings` | `specificSettings` ??? | `roomId` ??? | Contains all settings profiles that are applied to rooms. |
-| `structures_flat` | `structuresFlat` ??? | ??? | Contains the room structures (i.e. Country, City, Building, Floor) and maps which rooms that are grouped under which structures. |
-| `customEquipment` | `customEquipment` | `ALL` ??? | Contains documents of any eventual |
-
-### Request example
-
-```javascript
-// Subscribes to the room with the roomId "MBPMGDaomwnHawrt6"
-ddpclient.subscribe('allRooms',
-  ['MBPMGDaomwnHawrt6'],
-  function () {
-    console.log(ddpclient.collections.rooms);
-  }
-);
-```
-
-### Response exmaple
-
-```javascript
-{ MBPMGDaomwnHawrt6:
-   { _id: 'MBPMGDaomwnHawrt6',
-     name: 'Fika room',
-     mail: 'fika-room@domain.tld',
-     address: 'fika-room@domain.tld',
-     id: 'Fika room',
-     numberOfSeats: 4,
-     alias: 'Fika room',
-     isActive: true,
-     isDeleted: false,
-     equipment:
-      { lights: true,
-        projector: null,
-        computer: null,
-        teleConference: null,
-        wifi: true,
-        whiteboard: null,
-        videoConference: null,
-        display: null,
-        minto: true,
-        ac: true,
-        information: null },
-     structureId: 'xSEQpnFEZ2KFWroBo',
-     userIds: [],
-     assigned: true } }
-```
 
 ---
 
