@@ -3,6 +3,10 @@ Getting started code for integration with Evoko Home room booking server
 
 See the bookAllRooms.js file for a working Nodejs example.
 
+Use username: defaultDevIntegrationUser
+And password: wjHjBa4SS7-qX0fTWaad8vPsSa9QJdQcKVE3q6LsG2v
+URL: wss://192.168.0.98:3002/websocket   (Update with IP from Cisco)
+
 # Evoko Home API documentation
 
 - [Introduction](#introduction)
