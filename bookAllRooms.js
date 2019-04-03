@@ -5,7 +5,7 @@ const moment = require("moment-timezone");
 const USERNAME = 'defaultDevIntegrationUser';
 
 const PASSWORD = 'wjHjBa4SS7-qX0fTWaad8vPsSa9QJdQcKVE3q6LsG2v'; // secret token Hackaton machine
-const URL = 'wss://192.168.0.98:3002/websocket'; // To be updated with IP
+const URL = 'wss://192.168.1.191:3002/websocket'; // Cisco Evoko Home server IP
 
 const PASSWORDHASH = sha256(PASSWORD);
 
