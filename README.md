@@ -75,7 +75,7 @@ const ddpclient = new DDPClient({
 
 ddpclient.connect(function(error, wasReconnect) {
   if (error) {
-    console.log('DDP connection error!');
+    console.log('DDP connection error!', error);
     return;
   }
 
@@ -97,6 +97,7 @@ ddpclient.connect(function(error, wasReconnect) {
         console.log(err);
       }
     }
+  );
 });
 ```
 
